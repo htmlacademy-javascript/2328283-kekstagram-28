@@ -6,23 +6,24 @@ const countsLeng = (str,leng) => {
   }
 };
 const checkPalindrome = (str) => {
-  str = str.toLowerCase();
-  const revers = str.split('').reverse().join('').toLowerCase();
-  if (revers === str.toLowerCase()){
+  str = str.toLowerCase().replaceAll(' ','');
+  const revers = str.split('').reverse().join('');
+  if (revers === str){
     return 'строка  является палиндромом';
-  }else if (revers.replaceAll(' ','') === str.replaceAll(' ','')){
-    return 'Это строка является паландромом';
   }else{
     return 'строка  не является палиндромом';
   }
 };
 const isNumber = (str) => {
+  if(typeof str === 'number'){
+    return str;
+  }
   str = str.replace(/\D/g, '');
   str = parseInt(str,10);
-  if (str === str){
-    return `Результат: число ${str}`;
-  }else{
+  if (Number.isNaN(str)){
     return NaN;
+  }else {
+    return `Результат: число ${str}`;
   }
 };
 const myPadStart = (string, minLength, pad) => {
@@ -35,4 +36,4 @@ const myPadStart = (string, minLength, pad) => {
   }
   return result;
 };
-console.log(myPadStart('1', 2, '0'));
+
