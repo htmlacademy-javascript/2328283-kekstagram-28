@@ -34,7 +34,7 @@ function descriptionPhoto(_, id) {
       message:getRandomArrayElement(commentLine),
       name: getRandomArrayElement(nameMessage)
     }
-}
+};
 }
 const objSort = Array.from({ length: 25 }, descriptionPhoto).sort(() => Math.random() - 0.5);
 
