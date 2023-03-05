@@ -1,4 +1,3 @@
-console.log('работает data ')
 const commentLine = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -15,5 +14,5 @@ const nameMessage = [
   'Лалита',
   'Анастасия'
 ];
-export {commentLine};
-export {nameMessage};
+export {commentLine,nameMessage};
+

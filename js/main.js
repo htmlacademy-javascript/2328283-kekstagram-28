@@ -1,5 +1,5 @@
-import './util.js';
-import './data.js';
+import {getRandomInteger,getRandomArrayElement} from './util.js';
+import {commentLine,nameMessage} from './data.js';
 function descriptionPhoto(_, id) {
   return {
     id: id + 1,
@@ -15,7 +15,4 @@ function descriptionPhoto(_, id) {
   };
 }
 const objSort = Array.from({ length: 25 }, descriptionPhoto).sort(() => Math.random() - 0.5);
-import {getRandomInteger} from './util.js';
-import {commentLine} from './data.js';
-import {nameMessage} from './data.js';
-import {getRandomArrayElement} from './util.js';
+
