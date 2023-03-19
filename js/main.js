@@ -1,3 +1,3 @@
 import './data.js';
-import './rendering.js';
+import './rendering-list.js';
 
