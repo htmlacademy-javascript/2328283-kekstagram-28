@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Александр Нерсесян](https://up.htmlacademy.ru/javascript/28/user/2328283).
-* Наставник: [Олег Зубков](https://htmlacademy.ru/profile/id42701).
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/id1118577).
 
 ---
 
