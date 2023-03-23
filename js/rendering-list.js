@@ -3,8 +3,8 @@ const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureListFragment = document.createDocumentFragment();
 const similarPictures = objSort();
-const coments = document.querySelector('.social__comments');
-const modalComment = coments.querySelector('.social__comment');
+const comments = document.querySelector('.social__comments');
+const modalComment = comments.querySelector('.social__comment');
 
 similarPictures.forEach((picture) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -16,12 +16,12 @@ similarPictures.forEach((picture) => {
   pictureListFragment.append(pictureElement);
 });
 picturesList.append(pictureListFragment);
-coments.innerHTML = '';
-similarPictures.forEach(element => {
+comments.innerHTML = '';
+similarPictures.forEach((element) => {
   const comentModal = modalComment.cloneNode(true);
   comentModal.querySelector('.social__picture').src = element.comments[1].avatar;
   comentModal.querySelector('.social__picture').alt = element.comments[1].name;
   comentModal.querySelector('.social__text').textContent = element.comments[1].message;
   pictureListFragment.append(comentModal);
 });
-coments.append(pictureListFragment);
+comments.append(pictureListFragment);
