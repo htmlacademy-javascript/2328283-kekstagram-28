@@ -1,3 +1,8 @@
+import {scaleImput,imgElements} from './form-action.js';
+import {resetEffects} from './effectus.js';
+const MAX_LENGTH_COMMENT = 140;
+const MAX_HASHTAG_COUNT = 5;
+const VALID_SIMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const form = document.querySelector('.img-upload__form');
 const uploadFile = document.querySelector(' #upload-file');
 const imgUpload = form.querySelector('.img-upload__overlay');
@@ -6,14 +11,13 @@ const inputText = form.querySelector('.text__description');
 const hasTag = form.querySelector('.text__hashtags');
 const description = form.querySelector('.text__description');
 const hasTagErrorText = 'Неккоректно заполнены хештеги';
-const MAX_LENGTH_COMMENT = 140;
 const descriptionErrorText = `Длина комментария не может составлять больше ${MAX_LENGTH_COMMENT} символов`;
-const MAX_HASHTAG_COUNT = 5;
-const VALID_SIMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-
 uploadFile.addEventListener('change',()=>{
   imgUpload.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  imgElements.style.transform = 'scale(1)';
+  scaleImput.value = '100%';
+  resetEffects();
 });
 closeForm.addEventListener('click',()=>{
   imgUpload.classList.add('hidden');
@@ -73,3 +77,5 @@ hasTag.addEventListener('oninput',()=> {
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 });
+
+
