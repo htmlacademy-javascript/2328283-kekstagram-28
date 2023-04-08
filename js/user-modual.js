@@ -1,14 +1,14 @@
 const userModalElement = document.querySelector('.big-picture');
 const userModalClose = userModalElement.querySelector('.big-picture__cancel');
-const pictureAll = document.querySelectorAll('.picture');
 const likesCounter = document.querySelector('.social__comment-count');
 const comentLoader = document.querySelector('.comments-loader');
-const clicklPictires = (picture) =>{
+const clicklPictires = () =>{
+  const pictureAll = document.querySelectorAll('.picture');
   const bigPicture = userModalElement.querySelector('.big-picture__img img');
   const modalLikes = userModalElement.querySelector('.likes-count');
   const modalDescription = userModalElement.querySelector('.social__caption');
   const modalConst = userModalElement.querySelector('.comments-count');
-  picture.forEach((element) => {
+  pictureAll.forEach((element) => {
     element.addEventListener('click',()=>{
       bigPicture.src = element.querySelector('.picture__img').src;
       modalLikes.textContent = element.querySelector('.picture__likes').textContent;
@@ -21,9 +21,6 @@ const clicklPictires = (picture) =>{
     });
   });
 };
-// // console.log(pictureAll)
-// clicklPictires(pictureAll);
-
 userModalClose.onclick = () => userModalElement.classList.add('hidden');
 document.onkeydown = (evt) => {
   if (evt.key === 'Escape') {
@@ -31,6 +28,4 @@ document.onkeydown = (evt) => {
     document.body.classList.remove('modal-open');
   }
 };
-
-
 export {clicklPictires}

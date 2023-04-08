@@ -1,8 +1,6 @@
-import { objSort } from './data.js';
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureListFragment = document.createDocumentFragment();
-const similarPictures = objSort();
 const comments = document.querySelector('.social__comments');
 const modalComment = comments.querySelector('.social__comment');
 const renderImg = (data)=>{
@@ -14,9 +12,9 @@ const renderImg = (data)=>{
     pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
     pictureElement.dataset.thumbnaiId = picture.id;
     pictureListFragment.append(pictureElement);
-});
+  });
   picturesList.append(pictureListFragment);
-}
+};
 const renderComments = (data) => {
   comments.innerHTML = '';
   data.forEach((element) => {
@@ -27,13 +25,5 @@ const renderComments = (data) => {
     pictureListFragment.append(comentModal);
   });
   comments.append(pictureListFragment);
-}
-
-// renderImg(similarPictures)
-// fetch ('https://28.javascript.pages.academy/kekstagram/data')
-//   .then((response) => response.json())
-//   .then((data) => {
-//     renderImg(data);
-
-//   });
+};
 export {renderImg,renderComments}

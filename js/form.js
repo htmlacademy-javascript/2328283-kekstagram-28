@@ -1,6 +1,6 @@
 import {scaleImput,imgElements} from './form-action.js';
 import {resetEffects} from './effectus.js';
-import {showAlert,successfullyAlert} from './util.js';
+import {showAlert} from './util.js';
 import {sendData} from './api-form.js';
 const MAX_LENGTH_COMMENT = 140;
 const MAX_HASHTAG_COUNT = 5;
@@ -97,11 +97,10 @@ const unblockSubmitButton = () => {
   submitButton.disabled = false;
   submitButton.textContent = SubmitButtonText.IDLE;
 };
-const messageSuccessful = () => setTimeout(showAlert('Данные отправились'));
+const messageSuccessful = () => showAlert('Данные отправились');
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();

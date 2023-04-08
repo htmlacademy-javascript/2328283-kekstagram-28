@@ -1,38 +1,3 @@
-import {renderImg,renderComments} from './rendering-list.js'
-import {clicklPictires} from './user-modual.js'
-// const sendData = (body) => fetch(
-//   'https://28.javascript.pages.academy/kekstagram',
-//   {
-//     method: 'POST',
-//     body,
-//   })
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error();
-//     }
-//   })
-//   .catch(() => {
-//     throw new Error('Не удалось отправить форму. Попробуйте ещё раз');
-//   });
-
-
-// // import {renderSinilarPictures} from './rendering-list.js'
-// //   fetch('https://28.javascript.pages.academy/kekstagram/data')
-// //   .then((response) => response.json())
-// //   .then((picture) => {
-// //      renderSinilarPictures(picture);
-// //   });
-
-// // renderImg(similarPictures)
-fetch ('https://28.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
-  .then((data) => {
-    renderImg(data);
-    renderComments(data);
-    clicklPictires(data);
-  });
-
-
 const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
 const Route = {
   GET_DATA: '/data',
