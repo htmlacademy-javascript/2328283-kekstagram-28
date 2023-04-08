@@ -21,7 +21,9 @@ const clicklPictires = (picture) =>{
     });
   });
 };
-clicklPictires(pictureAll);
+// // console.log(pictureAll)
+// clicklPictires(pictureAll);
+
 userModalClose.onclick = () => userModalElement.classList.add('hidden');
 document.onkeydown = (evt) => {
   if (evt.key === 'Escape') {
@@ -31,3 +33,4 @@ document.onkeydown = (evt) => {
 };
 
 
+export {clicklPictires}

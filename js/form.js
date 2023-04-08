@@ -1,5 +1,7 @@
 import {scaleImput,imgElements} from './form-action.js';
 import {resetEffects} from './effectus.js';
+import {showAlert,successfullyAlert} from './util.js';
+import {sendData} from './api-form.js';
 const MAX_LENGTH_COMMENT = 140;
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SIMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -9,19 +11,31 @@ const imgUpload = form.querySelector('.img-upload__overlay');
 const closeForm = form.querySelector('.img-upload__cancel ');
 const inputText = form.querySelector('.text__description');
 const hasTag = form.querySelector('.text__hashtags');
-const description = form.querySelector('.text__description');
+const submitButton = document.querySelector('.img-upload__submit');
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 const hasTagErrorText = 'Неккоректно заполнены хештеги';
 const descriptionErrorText = `Длина комментария не может составлять больше ${MAX_LENGTH_COMMENT} символов`;
-uploadFile.addEventListener('change',()=>{
+const closeFotoModal = ()=>{
   imgUpload.classList.remove('hidden');
   document.body.classList.add('modal-open');
   imgElements.style.transform = 'scale(1)';
   scaleImput.value = '100%';
   resetEffects();
+};
+uploadFile.addEventListener('change',()=>{
+  closeFotoModal();
 });
-closeForm.addEventListener('click',()=>{
+const closeFormModal = () =>{
   imgUpload.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  inputText.value = '';
+  hasTag.value = '';
+};
+closeForm.addEventListener('click',()=>{
+  closeFormModal();
 });
 const onCloseKey = (evt)=>{
   if (evt.key === 'Escape') {
@@ -49,7 +63,7 @@ function validateLength (value) {
   return value.length <= MAX_LENGTH_COMMENT;
 }
 pristine.addValidator(
-  description,
+  inputText,
   validateLength,
   descriptionErrorText
 );
@@ -68,14 +82,39 @@ pristine.addValidator(
   validateHashTag,
   hasTagErrorText,
 );
-description.addEventListener('oninput', () => {
+inputText.addEventListener('oninput', () => {
   pristine.validate();
 });
 hasTag.addEventListener('oninput',()=> {
   pristine.validate();
 });
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-});
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
 
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+const messageSuccessful = () => setTimeout(showAlert('Данные отправились'));
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .then(messageSuccessful)
+        .catch(
+          (err) => {
+            showAlert(err.message);
+          }
+        )
+        .finally(unblockSubmitButton);
+    }
+  });
+};
+setUserFormSubmit(closeFormModal,);
