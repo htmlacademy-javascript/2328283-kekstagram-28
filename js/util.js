@@ -1,4 +1,4 @@
-
+const isEscapeKey = (evt) => evt.key === 'Escape';
 const ALERT_SHOW_TIME = 5000;
 
 const showAlert = (message) => {
@@ -18,6 +18,6 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
-export {showAlert};
+export {showAlert,isEscapeKey};
 
 
