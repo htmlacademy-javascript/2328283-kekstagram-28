@@ -37,7 +37,8 @@ const renderComments = (comments) => {
     commentsTemp = [...comments];
   }
 
-  const renderingComments = commentsTemp.splice(0, RENDER_COMMENTS < commentsTemp.length ? RENDER_COMMENTS : commentsTemp.length);
+  const renderingComments = commentsTemp.splice(0, RENDER_COMMENTS < commentsTemp.length
+    ? RENDER_COMMENTS : commentsTemp.length);
 
   renderingComments.forEach((comment) => {
     commentsListElement.append(fillCommentData(comment));
