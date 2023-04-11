@@ -51,18 +51,20 @@ const EFFECTS = [
 ];
 const DEFOLT_EFFECT = EFFECTS[0];
 let choseEffect = DEFOLT_EFFECT;
-const imgElement = document.querySelector('.img-upload__preview img')
+const imgElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
-const sliderElement = document.querySelector('.effect-level__slider')
-const containerElemets = document.querySelector('.img-upload__effect-level ')
-const effectLvlElement = document.querySelector('.effect-level__value')
+const sliderElement = document.querySelector('.effect-level__slider');
+const containerElemets = document.querySelector('.img-upload__effect-level ');
+const effectLvlElement = document.querySelector('.effect-level__value');
 const isDefolt = () => choseEffect === DEFOLT_EFFECT;
 const showSlider = () =>{
   containerElemets.classList.remove('hidden');
 };
+
 const closeSlider = () =>{
   containerElemets.classList.add('hidden');
 };
+
 const updateSlider = () =>{
   sliderElement.noUiSlider.updateOptions({
     range :{
@@ -79,6 +81,7 @@ const updateSlider = () =>{
     showSlider();
   }
 };
+
 const onEffectsChange = (evt) =>{
   if(!evt.target.classList.contains('effects__radio')){
     return;
@@ -87,6 +90,7 @@ const onEffectsChange = (evt) =>{
   imgElement.className = `effects__preview--${choseEffect.name}`;
   updateSlider();
 };
+
 const onSliderUpdate = () => {
   const sliderValue = sliderElement.noUiSlider.get();
   imgElement.style.filter = isDefolt()
@@ -94,10 +98,12 @@ const onSliderUpdate = () => {
     : `${choseEffect.style}(${sliderValue} ${choseEffect.unit})`;
   effectLvlElement.value = sliderValue;
 };
+
 const resetEffects = () =>{
   choseEffect = DEFOLT_EFFECT;
   updateSlider();
 };
+
 noUiSlider.create(sliderElement,{
   range:{
     min:DEFOLT_EFFECT.min,
@@ -107,7 +113,9 @@ noUiSlider.create(sliderElement,{
   step:DEFOLT_EFFECT.step,
   connect:'lower',
 });
+
 closeSlider();
+
 effectsElement.addEventListener('change',onEffectsChange);
 sliderElement.noUiSlider.on('update',onSliderUpdate);
 export {resetEffects};
