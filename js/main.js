@@ -2,6 +2,7 @@ import './form.js';
 import './form-action.js';
 import './effects.js';
 import './api.js';
+import './avatar.js';
 import { initSortPhotosActions } from './sort.js';
 import {getData} from './api.js';
 import{showAlert} from './util.js';
