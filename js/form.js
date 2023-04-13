@@ -1,6 +1,6 @@
 import {scaleImput,imgElements} from './form-action.js';
 import {resetEffects} from './effects.js';
-import {showAlert} from './util.js';
+import {createErrorMessage, createSuccessMessage} from './message.js';
 import {sendData} from './api.js';
 import { isEscapeKey} from './util.js';
 
@@ -21,50 +21,41 @@ const SubmitButtonText = {
 const hasTagErrorText = 'Неккоректно заполнены хештеги';
 const descriptionErrorText = `Длина комментария не может составлять больше ${MAX_LENGTH_COMMENT} символов`;
 
-const closeFotoModal = ()=>{
-  imgUpload.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  imgElements.style.transform = 'scale(1)';
-  scaleImput.value = '100%';
-  resetEffects();
-};
-
-uploadFile.addEventListener('change',()=>{
-  closeFotoModal();
-});
-
 const closeFormModal = () =>{
   imgUpload.classList.add('hidden');
   document.body.classList.remove('modal-open');
   inputText.value = '';
   hasTag.value = '';
 };
-
+const onCloseKey = (evt)=>{
+  if (isEscapeKey(evt)) {
+    closeFormModal();
+  }
+};
+const preventCloseEsc = (evt) =>{
+  if (isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
+};
 closeForm.addEventListener('click',()=>{
   closeFormModal();
 });
+inputText.addEventListener('keydown',preventCloseEsc);
 
-const onCloseKey = (evt)=>{
-  if (isEscapeKey(evt)) {
-    imgUpload.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  }
+hasTag.addEventListener('keydown',preventCloseEsc);
+
+const openFotoModal = ()=>{
+  imgUpload.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  imgElements.style.transform = 'scale(1)';
+  scaleImput.value = '100%';
+  resetEffects();
+  document.addEventListener('keydown',onCloseKey);
 };
 
-document.addEventListener('keydown',onCloseKey);
-inputText.addEventListener('keydown',(evt)=>{
-  if (isEscapeKey(evt)) {
-    evt.stopPropagation();
-
-  }
+uploadFile.addEventListener('change',()=>{
+  openFotoModal();
 });
-
-hasTag.addEventListener('keydown',(evt)=>{
-  if (isEscapeKey(evt)) {
-    evt.stopPropagation();
-  }
-});
-
 const pristine = new Pristine (form,{
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
@@ -116,7 +107,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
-const messageSuccessful = () => showAlert('Данные отправились');
+const messageSuccessful = () => createSuccessMessage();
 
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
@@ -129,7 +120,7 @@ const setUserFormSubmit = (onSuccess) => {
         .then(messageSuccessful)
         .catch(
           (err) => {
-            showAlert(err.message);
+            createErrorMessage(err.message);
           }
         )
         .finally(unblockSubmitButton);

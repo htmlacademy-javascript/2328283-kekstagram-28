@@ -72,7 +72,7 @@ const showBigPhotoElement = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const hiddenBigPhotoElement = () => {
+const hiddensBigPhotoElement = () => {
   bigPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
   loadCommentsButton.classList.remove('hidden');
@@ -87,13 +87,13 @@ const onLoadCommentsButtonClick = (evt) => {
 
 const onBigPhotoCloseButtonClick = (evt) => {
   evt.preventDefault();
-  hiddenBigPhotoElement();
+  hiddensBigPhotoElement();
 };
 
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    hiddenBigPhotoElement();
+    hiddensBigPhotoElement();
   }
 }
 

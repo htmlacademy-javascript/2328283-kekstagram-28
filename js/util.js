@@ -1,5 +1,4 @@
 const isEscapeKey = (evt) => evt.key === 'Escape';
-const ALERT_SHOW_TIME = 5000;
 
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
@@ -10,23 +9,18 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = '100';
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = '0';
-  alertContainer.style.top = '0';
-  alertContainer.style.right = '0';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = '#f5dc29';
-  alertContainer.textContent = message;
-  document.body.append(alertContainer);
-  setTimeout(() => {
-    alertContainer.remove();
-  }, ALERT_SHOW_TIME);
+const renderMessage = (element) => document.body.append(element);
+
+const createErrorMessage = (message) => {
+  const div = document.createElement('div');
+  div.classList.add('error-message');
+  div.textContent = message;
+  renderMessage(div);
 };
-export {showAlert,isEscapeKey,debounce};
+
+const removeErrorMessage = () => document.querySelector('.error-message').remove();
+
+export { isEscapeKey, debounce, renderMessage, createErrorMessage, removeErrorMessage };
+
 
 

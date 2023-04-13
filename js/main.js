@@ -5,7 +5,7 @@ import './api.js';
 import './avatar.js';
 import {initSortPhotosActions } from './sort.js';
 import {getData} from './api.js';
-import {showAlert} from './util.js';
+import {createErrorMessage} from './message.js';
 import {renderPhotos } from './render-photo.js';
 import {initBigPhotoActions } from './user-modal.js';
 
@@ -16,7 +16,7 @@ getData()
     initBigPhotoActions();
   })
   .catch((err) => {
-    showAlert(err.message);
+    createErrorMessage(err.message);
   }
   );
 
