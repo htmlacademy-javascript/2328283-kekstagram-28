@@ -27,19 +27,23 @@ const closeFormModal = () =>{
   inputText.value = '';
   hasTag.value = '';
 };
+
 const onCloseKey = (evt)=>{
   if (isEscapeKey(evt)) {
     closeFormModal();
   }
 };
+
 const preventCloseEsc = (evt) =>{
   if (isEscapeKey(evt)) {
     evt.stopPropagation();
   }
 };
+
 closeForm.addEventListener('click',()=>{
   closeFormModal();
 });
+
 inputText.addEventListener('keydown',preventCloseEsc);
 
 hasTag.addEventListener('keydown',preventCloseEsc);

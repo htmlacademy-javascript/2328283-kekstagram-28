@@ -53,9 +53,10 @@ const DEFOLT_EFFECT = EFFECTS[0];
 let choseEffect = DEFOLT_EFFECT;
 const imgElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
-const sliderElement = document.querySelector('.effect-level__slider');
 const containerElemets = document.querySelector('.img-upload__effect-level ');
-const effectLvlElement = document.querySelector('.effect-level__value');
+const sliderElement = containerElemets.querySelector('.effect-level__slider');
+const effectLvlElement = containerElemets.querySelector('.effect-level__value');
+
 const isDefolt = () => choseEffect === DEFOLT_EFFECT;
 const showSlider = () =>{
   containerElemets.classList.remove('hidden');
