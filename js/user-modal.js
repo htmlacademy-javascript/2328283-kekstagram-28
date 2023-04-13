@@ -3,15 +3,15 @@ import { isEscapeKey } from './util.js';
 const RENDER_COMMENTS = 5;
 
 const bigPhotoElement = document.querySelector('.big-picture');
-const bigPhotoCloseButton = document.querySelector('.big-picture__cancel');
-const imageElement = document.querySelector('.big-picture__img img');
-const descriptionElement = document.querySelector('.social__caption');
-const likesElement = document.querySelector('.likes-count');
-const commentsCountElement = document.querySelector('.comments-count');
-const loadCommentsButton = document.querySelector('.social__comments-loader');
-const commentsListElement = document.querySelector('.social__comments');
-const commentsCurrentElement = document.querySelector('.comments-current');
-const commentTemplate = document.querySelector('.social__comment');
+const bigPhotoCloseButton = bigPhotoElement.querySelector('.big-picture__cancel');
+const imageElement = bigPhotoElement.querySelector('.big-picture__img img');
+const descriptionElement = bigPhotoElement.querySelector('.social__caption');
+const likesElement = bigPhotoElement.querySelector('.likes-count');
+const commentsCountElement = bigPhotoElement.querySelector('.comments-count');
+const loadCommentsButton = bigPhotoElement.querySelector('.social__comments-loader');
+const commentsListElement = bigPhotoElement.querySelector('.social__comments');
+const commentsCurrentElement = bigPhotoElement.querySelector('.comments-current');
+const commentTemplate = bigPhotoElement.querySelector('.social__comment');
 
 let countComments = 0;
 let commentsLength = 0;
@@ -72,7 +72,7 @@ const showBigPhotoElement = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const hiddenBigPhotoElement = () => {
+const hiddensBigPhotoElement = () => {
   bigPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
   loadCommentsButton.classList.remove('hidden');
@@ -87,13 +87,13 @@ const onLoadCommentsButtonClick = (evt) => {
 
 const onBigPhotoCloseButtonClick = (evt) => {
   evt.preventDefault();
-  hiddenBigPhotoElement();
+  hiddensBigPhotoElement();
 };
 
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    hiddenBigPhotoElement();
+    hiddensBigPhotoElement();
   }
 }
 
