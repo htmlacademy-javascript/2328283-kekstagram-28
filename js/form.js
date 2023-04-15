@@ -26,13 +26,15 @@ const closeFormModal = () =>{
   document.body.classList.remove('modal-open');
   inputText.value = '';
   hasTag.value = '';
+  form.reset();
+  document.removeEventListener('keydown',onCloseKey);
 };
 
-const onCloseKey = (evt)=>{
+function onCloseKey (evt){
   if (isEscapeKey(evt)) {
     closeFormModal();
   }
-};
+}
 
 const preventCloseEsc = (evt) =>{
   if (isEscapeKey(evt)) {
@@ -111,7 +113,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
-const messageSuccessful = () => createSuccessMessage();
+const Successmessage = () => createSuccessMessage();
 
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
@@ -121,7 +123,7 @@ const setUserFormSubmit = (onSuccess) => {
       blockSubmitButton();
       sendData(new FormData(evt.target))
         .then(onSuccess)
-        .then(messageSuccessful)
+        .then(Successmessage)
         .catch(
           (err) => {
             createErrorMessage(err.message);
