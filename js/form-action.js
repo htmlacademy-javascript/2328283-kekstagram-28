@@ -9,7 +9,7 @@ const zoomImg = (value)=>{
   imgElements.style.transform = `scale(${value / 100})`;
   scaleImput.value = `${value}%`;
 };
-const onBigger = () => {
+const increaseImg = () => {
   const currentValue = parseInt(scaleImput.value,10);
   let newValue = currentValue + SCALE_STEP;
   if(newValue > MAX_SCALET){
@@ -17,7 +17,7 @@ const onBigger = () => {
   }
   zoomImg(newValue);
 };
-const onLower = () => {
+const reduceImg = () => {
   const currentValue = parseInt(scaleImput.value,10);
   let newValue = currentValue - SCALE_STEP;
   if(newValue < MIN_SCALET){
@@ -25,7 +25,7 @@ const onLower = () => {
   }
   zoomImg(newValue);
 };
-biggerButton.addEventListener('click',onBigger);
-smallerButton.addEventListener('click',onLower);
+biggerButton.addEventListener('click',increaseImg);
+smallerButton.addEventListener('click',reduceImg);
 
 export {scaleImput,imgElements};

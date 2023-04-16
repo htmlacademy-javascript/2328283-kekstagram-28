@@ -27,10 +27,10 @@ const closeFormModal = () =>{
   inputText.value = '';
   hasTag.value = '';
   form.reset();
-  document.removeEventListener('keydown',onCloseKey);
+  document.removeEventListener('keydown',closingByKey);
 };
 
-function onCloseKey (evt){
+function closingByKey (evt){
   if (isEscapeKey(evt)) {
     closeFormModal();
   }
@@ -56,7 +56,7 @@ const openFotoModal = ()=>{
   imgElements.style.transform = 'scale(1)';
   scaleImput.value = '100%';
   resetEffects();
-  document.addEventListener('keydown',onCloseKey);
+  document.addEventListener('keydown',closingByKey);
 };
 
 uploadFile.addEventListener('change',()=>{
